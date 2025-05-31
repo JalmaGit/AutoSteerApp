@@ -1,15 +1,12 @@
-// Copyright (C) 2016 The Qt Company Ltd.
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+#include <iostream>
 
-#include <QApplication>
+int main (int argc, char *argv[]) {
 
-#include "calculator.hpp"
+  for (int i = 0; i < 10; i++) {
+    std::cout << i << std::endl;
+  }
 
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    Calculator calc;
-    calc.show();
-    app.exec();
-    return 0;
+  std::cout << "Hello World" << std::endl;
+
+  return 0;
 }
