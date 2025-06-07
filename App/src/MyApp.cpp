@@ -56,8 +56,8 @@ int MyApp::run(int argc, char *argv[])
     layout->addWidget(imageLabel,0 ,0 , 1, 2);
 
     MapWidget* mapWidget = new MapWidget(mapView);
-    mapWidget->setPosition(0,0);
-    mapWidget->setZoom(0);
+    //mapWidget->setPosition(0,0);
+    //mapWidget->setZoom(0);
 
     window->setLayout(layout);
     window->resize(700,1000);

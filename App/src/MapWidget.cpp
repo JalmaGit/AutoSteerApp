@@ -44,24 +44,11 @@ void MapWidget::setZoom(int z){
 void MapWidget::paint() {
         QPainter painter(widget);
 
-        int tileX = long2map(centerLon, zoom);
-        int tileY = lat2map(centerLat, zoom);
-
         int widgetCenterX = widget->width() / 2;
         int widgetCenterY = widget->height() / 2;
-        int tileSize = 256;
+        QPixmap tile = getMap(0, 0, 0);
+        painter.drawPixmap(0,0,500,500,tile);
 
-        for (int dx = -2; dx <= 2; ++dx) {
-            for (int dy = -2; dy <= 2; ++dy) {
-                int x = tileX + dx;
-                int y = tileY + dy;
-                int px = widgetCenterX + dx * tileSize;
-                int py = widgetCenterY + dy * tileSize;
-
-                QPixmap tile = getMap(x, y, zoom);
-                painter.drawPixmap(px, py, tileSize, tileSize, tile);
-            }
-        }
         painter.setBrush(Qt::red);
         painter.drawEllipse(QPoint(widgetCenterX, widgetCenterY), 7, 7);
     }
@@ -91,13 +78,4 @@ QPixmap MapWidget::getMap(int x, int y, int z)
     });
     
     return QPixmap();
-}
-
-int MapWidget::long2map(double lon, int z){ 
-    return static_cast<int>(std::floor((lon + 180.0) / 360.0 * (1 << z)));
-}
-
-int MapWidget::lat2map(double lat, int z){
-    double latRad = lat * M_PI / 180.0;
-    return static_cast<int>(std::floor((1.0 - std::log(std::tan(latRad) + 1.0 / std::cos(latRad)) / M_PI) / 2.0 * (1 << z)));
 }
