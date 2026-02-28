@@ -2,6 +2,7 @@
   "cmake.sourceDirectory": "${workspaceFolder}",
   "cmake.buildDirectory": "${workspaceFolder}/build",
   "cmake.configureOnEdit": false,
+  "cmake.configureOnOpen": false,
   "files.associations": {
     "qgeocoordinate": "cpp",
     "qgraphicsview": "cpp",
@@ -13,4 +14,4 @@
     "qpoint": "cpp",
     "memory": "cpp"
   }
-}
+},

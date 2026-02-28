@@ -11,11 +11,13 @@
 #include <memory>
 
 MapWidget::MapWidget(QWidget *targetWidget) : widget(targetWidget),
-                                              mapServerUrl("https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"),
                                               centerLat(0), centerLon(0), zoom(1)
 {
+    mapServerUrl = "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/%1/%2/%3";
+    //mapServerUrl = "https://a.tile.openstreetmap.org/%1/%2/%3";
+
     network = new QNetworkAccessManager(targetWidget);
-    widget->setMinimumSize(100, 100);
+    widget->setMinimumSize(500, 500);
 
     eventFilter = std::make_unique<MapEventFilter>(this);
 
@@ -46,8 +48,8 @@ void MapWidget::paint() {
 
         int widgetCenterX = widget->width() / 2;
         int widgetCenterY = widget->height() / 2;
-        QPixmap tile = getMap(0, 0, 0);
-        painter.drawPixmap(0,0,500,500,tile);
+        QPixmap tile = getMap(10, 10, zoom);
+        painter.drawPixmap(0,0,250,250,tile);
 
         painter.setBrush(Qt::red);
         painter.drawEllipse(QPoint(widgetCenterX, widgetCenterY), 7, 7);

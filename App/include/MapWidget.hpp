@@ -42,12 +42,10 @@ private:
     QNetworkAccessManager* network;
     QMap<QString, QPixmap> mapCache;
 
-    //Functions For QT
     void paint();
     QString urlForMap(int x, int y, int z);
     QPixmap getMap(int x, int y, int z);
 
-    //Math Functions
     int long2map(double lon, int z);
     int lat2map(double lat, int z);
 };
